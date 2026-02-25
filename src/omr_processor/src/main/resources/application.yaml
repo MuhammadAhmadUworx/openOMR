@@ -1,6 +1,14 @@
 spring:
   application:
     name: omr_processor
+  ai:
+    openai:
+      base-url: https://integrate.api.nvidia.com
+      api-key: ${NVIDIA_API_KEY}
+      chat:
+        options:
+          model: openai/gpt-oss-20b
+          temperature: 0.7
 
 server:
   port: 4200
