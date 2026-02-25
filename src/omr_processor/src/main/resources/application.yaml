@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: omr_processor
+
+server:
+  port: 4200
