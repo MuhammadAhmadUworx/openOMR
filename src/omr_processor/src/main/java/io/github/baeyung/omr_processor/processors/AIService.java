@@ -1,4 +1,4 @@
-package io.github.baeyung.omr_processor.services;
+package io.github.baeyung.omr_processor.processors;
 
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;

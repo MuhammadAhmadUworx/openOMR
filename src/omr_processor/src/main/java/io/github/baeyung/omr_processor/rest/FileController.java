@@ -1,6 +1,7 @@
 package io.github.baeyung.omr_processor.rest;
 
-import io.github.baeyung.omr_processor.services.AIService;
+import io.github.baeyung.omr_processor.processors.AIService;
+import io.github.baeyung.omr_processor.processors.ocr.OCRService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,11 @@ import java.util.List;
 public class FileController {
 
     private final AIService aiService;
+    private final OCRService ocrService;
 
-    public FileController(AIService aiService) {
+    public FileController(AIService aiService,  OCRService ocrService) {
         this.aiService = aiService;
+        this.ocrService = ocrService;
     }
 
     @GetMapping("/hello")
@@ -25,12 +28,11 @@ public class FileController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> images(@RequestParam("files") List<MultipartFile> files) {
-        for (MultipartFile file : files) {
-            System.out.println(file.getContentType());
-            System.out.println("File name: " + file.getOriginalFilename());
-            System.out.println("Size: " + file.getSize());
+
+        if (files.isEmpty()) {
+            return ResponseEntity.badRequest().build();
         }
 
-        return ResponseEntity.ok("Uploaded " + files.size() + " files");
+        return ResponseEntity.ok(this.ocrService.extractText(files.getFirst()));
     }
 }

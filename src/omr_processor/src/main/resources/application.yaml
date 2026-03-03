@@ -16,3 +16,6 @@ spring:
 
 server:
   port: 4200
+
+
+# GOOGLE_APPLICATION_CREDENTIALS setting this env variable is required until the dependency on google is removed
