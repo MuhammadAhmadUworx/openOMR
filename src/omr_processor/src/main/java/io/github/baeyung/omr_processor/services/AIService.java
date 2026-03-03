@@ -21,7 +21,7 @@ public class AIService {
     public String chatWithOptions(String message, String model) {
         ChatOptions options = OpenAiChatOptions.builder()
                 .model(model)  // Override model dynamically
-                .temperature(0.5)
+                .temperature(0.8)
                 .maxTokens(2000)
                 .build();
 

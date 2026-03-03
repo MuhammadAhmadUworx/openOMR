@@ -3,7 +3,7 @@ package io.github.baeyung.omr_processor.services;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OMRService {
+public class OCRService {
 
-    public OMRService() {}
+    public OCRService() {}
 }
