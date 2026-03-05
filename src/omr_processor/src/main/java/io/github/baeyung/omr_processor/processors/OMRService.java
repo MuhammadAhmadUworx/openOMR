@@ -11,25 +11,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OMRService {
+public class OMRService
+{
     private final OCRService ocrService;
     private final AIService aiService;
 
-    public OMRService(OCRService ocrService, AIService aiService) {
+    public OMRService(OCRService ocrService, AIService aiService)
+    {
         this.ocrService = ocrService;
         this.aiService = aiService;
     }
 
-    public byte[] processOMRImages(List<MultipartFile> images) {
+    public byte[] processOMRImages(List<MultipartFile> images)
+    {
         List<File> files = new ArrayList<>();
         int counter = 1;
         String finalText = "";
 
-        for (MultipartFile image : images) {
-            try {
+        for (MultipartFile image : images)
+        {
+            try
+            {
                 String ocrText = ocrService.extractText(image);
 
-                if (ocrText == null || ocrText.isBlank()) {
+                if (ocrText == null || ocrText.isBlank())
+                {
                     continue;
                 }
 
@@ -46,7 +52,9 @@ public class OMRService {
                         .concat("\t")
                         .concat(invoice.getInvoiceDate())
                         .concat("\t")
-                        .concat(invoice.getTotalNet().toString())
+                        .concat(invoice
+                                        .getTotalNet()
+                                        .toString())
                         .concat("\t")
                         .concat("0")
                         .concat("\t")
@@ -65,7 +73,9 @@ public class OMRService {
                 );
 
                 counter++;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 System.out.println(e.getMessage());
             }
         }
@@ -77,9 +87,12 @@ public class OMRService {
                 )
         );
 
-        try {
+        try
+        {
             return FileProcessor.zipAllFiles(files);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.out.println(e.getMessage());
             return null;
         }

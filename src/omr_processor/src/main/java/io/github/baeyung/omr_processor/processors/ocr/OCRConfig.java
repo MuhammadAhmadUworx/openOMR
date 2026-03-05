@@ -7,9 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 
 @Configuration
-public class OCRConfig {
+public class OCRConfig
+{
     @Bean
-    public ImageAnnotatorClient ImageAnnotatorClient() throws IOException {
+    public ImageAnnotatorClient ImageAnnotatorClient() throws IOException
+    {
         return ImageAnnotatorClient.create();
     }
 }
