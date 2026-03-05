@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class File {
+public class File
+{
     String fileName;
     byte[] file;
 }

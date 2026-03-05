@@ -10,7 +10,8 @@ import java.math.BigDecimal;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class InvoiceItem {
+public class InvoiceItem
+{
 
     private String productName;
     private Integer quantity;

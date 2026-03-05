@@ -12,7 +12,8 @@ import org.springframework.ai.openai.api.ResponseFormat;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AIService {
+public class AIService
+{
     private final OpenAiChatModel chatModel;
 
     @Value(value = "${spring.ai.openai.chat.options.model}")
@@ -88,28 +89,34 @@ public class AIService {
             }
             """;
 
-    public AIService(OpenAiChatModel chatModel) {
+    public AIService(OpenAiChatModel chatModel)
+    {
         this.chatModel = chatModel;
     }
 
-    public String chat(String message) {
+    public String chat(String message)
+    {
         return chatModel.call(message);
     }
 
-    public String chatWithOptions(String message, String model) {
-        ChatOptions options = OpenAiChatOptions.builder()
+    public String chatWithOptions(String message, String model)
+    {
+        ChatOptions options = OpenAiChatOptions
+                .builder()
                 .model(model)  // Override model dynamically
                 .temperature(0.8)
                 .maxTokens(2000)
                 .build();
 
-        return chatModel.call(new Prompt(message, options))
+        return chatModel
+                .call(new Prompt(message, options))
                 .getResult()
                 .getOutput()
                 .getText();
     }
 
-    public Invoice fromOCRCreateInvoice(String ocrText) {
+    public Invoice fromOCRCreateInvoice(String ocrText)
+    {
         ChatOptions options = OpenAiChatOptions
                 .builder()
                 .model(globalConfiguredChatModel)
@@ -122,7 +129,8 @@ public class AIService {
                 .temperature(0.0)
                 .build();
 
-        String llmResponse = chatModel.call(
+        String llmResponse = chatModel
+                .call(
                         new Prompt(
                                 """
                                         Extract structured invoice data from the following OCR text.
@@ -147,9 +155,12 @@ public class AIService {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
-        try {
+        try
+        {
             return mapper.readValue(llmResponse, Invoice.class);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.out.println(llmResponse);
             throw new RuntimeException(e);
         }

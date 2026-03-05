@@ -11,7 +11,8 @@ import java.util.List;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class Invoice {
+public class Invoice
+{
 
     private String companyName;
     private String address;
