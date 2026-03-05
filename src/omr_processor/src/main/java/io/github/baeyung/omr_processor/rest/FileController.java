@@ -56,7 +56,8 @@ public class FileController
 
         // Prepare response
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=images.zip");
+        var headerValue = "attachment; filename=OMR_" + employee.getForMonth() + ".zip";
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, headerValue);
 
         return ResponseEntity
                 .ok()
