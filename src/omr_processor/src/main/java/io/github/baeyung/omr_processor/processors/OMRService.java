@@ -46,25 +46,6 @@ public class OMRService
                         "FEB"
                 );
 
-                finalText = finalText
-                        .concat("\n")
-                        .concat(fileName.split("\\.")[0])
-                        .concat("\t")
-                        .concat(invoice.getInvoiceDate())
-                        .concat("\t")
-                        .concat(invoice
-                                        .getTotalNet()
-                                        .toString())
-                        .concat("\t")
-                        .concat("0")
-                        .concat("\t")
-                        .concat("0")
-                        .concat("\t")
-                        .concat("\"\"")
-                        .concat("\t")
-                        .concat("\"\"");
-                // add concat for ai reason
-
                 files.add(
                         new File(
                                 fileName + FileProcessor.getFileExt(image.getContentType()),
